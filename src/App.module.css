@@ -1,0 +1,35 @@
+.main{
+    /* background-color: antiquewhite; */
+    height: 100vh;
+    background-image: linear-gradient(pink, blue);
+
+}
+.Heading{
+     text-align: center;
+     padding-top: 3rem;
+     font-size: 3rem;
+     font-weight: bold;
+}
+.calculator{
+    background-color: rgb(54, 54, 54);
+    border:1px solid black;
+    width:200px;
+    border-radius: 5px;
+    margin-left: 45%;
+    margin-top: 10%;
+}
+.display{
+    margin: 10px;
+    width: 175px;
+    font-size: 25px;
+}
+.buttonsContainer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.button{
+    width:45px;
+    height: 45px;
+    margin: 3px;
+}

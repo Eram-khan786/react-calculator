@@ -1,23 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import styles from './App.module.css';
+import Display from './components/Display';
+import ButtonsContainer from './components/ButtonsContainer';
+import Heading from './components/Heading';
 
-function App() {
+const App = () => {
+  const [calVal, setCalVal] = useState('');
+
+  const ButtonClicked = (btntext) => {
+    if (btntext === "C") {
+      setCalVal('');
+    } else if (btntext === "=") {
+      if (btntext.length!==0){
+        try{
+          const result=eval(calVal)
+          setCalVal(result)
+        }
+        catch{
+          setCalVal("Syntax Error")
+        }
+      }
+    } 
+    else if (btntext==="+" || btntext==="-" || btntext==="*" || btntext==="/" || btntext==="."){
+      let lastchar = calVal[calVal.length - 1];
+        const operatorArray = ["+", "-", "*", "/", "^", "%","."];
+
+      if (operatorArray.includes(lastchar)) {
+        
+        setCalVal(prevCalVal => prevCalVal.slice(0, -1) + btntext);
+      } else {
+   
+        setCalVal(prevCalVal => prevCalVal + btntext);
+    }
+
+    }
+    else{
+      setCalVal(calVal+btntext)
+    }
+    }
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.main}>
+    <Heading/>
+    <div className={styles.calculator}>
+      <Display displayValue={calVal} />
+      <ButtonsContainer onButtonClick={ButtonClicked} />
+    </div>
     </div>
   );
 }
